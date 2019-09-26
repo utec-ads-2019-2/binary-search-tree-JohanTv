@@ -10,23 +10,24 @@ class Iterator {
 
     public:
         Iterator() {
-            // TODO
+            this->current = nullptr;
         }
 
         Iterator(Node<T> *node) {
-            // TODO
+            this->current = node;
         }
 
         Iterator<T>& operator=(const Iterator<T> &other) {          
-            // TODO
+            this->current = other.current;
+            return *this;
         }
 
         bool operator!=(Iterator<T> other) {
-            // TODO
+            return this->current == other.current;
         }
 
         Iterator<T>& operator++() {
-            // TODO
+
         }
 
         Iterator<T>& operator--() {
@@ -34,7 +35,7 @@ class Iterator {
         }
 
         T operator*() {
-            // TODO
+            return this->current->data;
         }
 };
 

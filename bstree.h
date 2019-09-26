@@ -2,9 +2,9 @@
 #define BSTREE_H
 
 #include "node.h"
-#include "iterator.h"
+#include "iterator.h
 
-template <typename T> 
+template <typename T>
 class BSTree {
 private:
     Node<T> *root;
@@ -65,7 +65,7 @@ private:
         bool find(T data) {
             Node<T>** nodeDad = &(this->root);
             return inTree(data,nodeDad,true);
-        } 
+        }
 
         BSTree& insert(T data) {
             Node<T>** nodeDad = nullptr;
@@ -136,7 +136,11 @@ private:
                     }
                     else {
                         Node<T> *temp = nodeDelete->right;
-                        transplant(nodeDelete, nodeSuccessor, *nodeDad);
+                        if(nodeDad == nullptr){
+                            this->root = nodeSuccessor;
+                            delete nodeDelete;
+                        }
+                        else transplant(nodeDelete, nodeSuccessor, *nodeDad);
                         nodeSuccessor->right = temp;
                     }
                 }
@@ -192,7 +196,7 @@ private:
             // TODO
         }
 
-        Iterator<T> end() { 
+        Iterator<T> end() {
             // TODO
         }
 
