@@ -57,10 +57,26 @@ private:
             }
         }
     }
+    void destroyAll(Node <T>* node){
+        if(node != nullptr){
+            destroyAll(node->left);
+            destroyAll(node->right);
+            delete node;
+        }
+    }
 
+    size_t totalHeight(Node<T>* node){
+        if (node == nullptr) return 0;
+
+        size_t hLeft = totalHeight(node->left);
+        size_t hRight = totalHeight(node->right);
+
+        return max(hLeft, hRight) + 1;
+    }
 
     public:
         BSTree() : root(nullptr), nodes(0) {};
+
 
         bool find(T data) {
             Node<T>** nodeDad = &(this->root);
@@ -177,7 +193,7 @@ private:
         }
 
         size_t height() {
-
+            return totalHeight(this->root);
         }
 
         void traversePreOrder() {
@@ -201,7 +217,7 @@ private:
         }
 
         ~BSTree() {
-            // TODO
+            destroyAll(this->root);
         }
 };
 
