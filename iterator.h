@@ -43,6 +43,7 @@ class Iterator {
 
             refillRepository(this->root);
 
+            // Así no debería ser el iterador, gastas mucho procesamiendo en cada iteración. La idea no es buscar de nuevo el siguiente, sino avanzar rápidamente
             if(current == repositoryNodes[repositoryNodes.size()-1]) current = nullptr;
             else{
                 for (int i = 0; i < repositoryNodes.size()-1; ++i) {
@@ -77,6 +78,7 @@ class Iterator {
         T operator*() {
             if(current != nullptr) return this->current->data;
             return -1;
+            // Aquí es mejor un throw, retornar -1 no es buena idea
         }
 };
 

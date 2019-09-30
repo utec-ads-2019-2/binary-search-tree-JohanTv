@@ -20,6 +20,7 @@ void Tester::testBSFTree(Mocker mocker, vector<T> elements) {
     sortAndPrune(elements);
     ASSERT(elements.size() == test->size(), "There is a problem with the insert or size");
 
+    // Tu borrado tiene errores
     unsigned int toRemove = mocker.generateRandomInt(1, elements.size());
     for (int j = 0; j < static_cast<int>(toRemove); ++j) {
         unsigned int index = mocker.generateRandomInt(0, elements.size() - 1);
